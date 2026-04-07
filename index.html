@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hearts2Hearts 💙</title>
+<style>
+
+body {
+    margin:0;
+    font-family:Arial,sans-serif;
+    overflow-x:hidden;
+    color:#000;
+    background:linear-gradient(135deg,#e6f0ff,#ffffff);
+}
+
+header {
+    background:rgba(77,166,255,0.85);
+    color:white;
+    text-align:center;
+    padding:25px;
+    backdrop-filter:blur(6px);
+    cursor:pointer;
+}
+header:hover{transform:scale(1.02);transition:0.3s;}
+header img{height:50px;vertical-align:middle;margin-right:10px;}
+/* NAVBAR */
+nav {
+    background: rgba(128,191,255,0.85);
+    text-align:center;
+    padding:10px;
+    backdrop-filter:blur(6px);
+}
+nav a { color:white; margin:0 15px; text-decoration:none; font-weight:bold; }
+/* HERO */
+.hero { text-align:center; padding:50px; }
+.hero h1 { color:#0066cc; }
+/* ABOUT */
+.about { padding:30px; text-align:center; max-width:800px; margin:auto; }
+/* CARD CONTAINER */
+.container { display:flex; flex-wrap:wrap; justify-content:center; }
+/* MEMBER CARD */
+.card {
+    background: rgba(255,255,255,0.85);
+    margin:15px;
+    padding:20px;
+    border-radius:20px;
+    width:250px;
+    text-align:center;
+    box-shadow:0 5px 15px rgba(0,0,0,0.1);
+    transition:0.3s;
+    cursor:pointer;
+}
+.card:hover{transform:scale(1.05) rotate(-1deg);box-shadow:0 10px 20px rgba(0,0,255,0.3);}
+.card img{width:100%;border-radius:15px;}
+/* FOOTER */
+footer {
+    background:rgba(77,166,255,0.85);
+    color:white;
+    text-align:center;
+    padding:15px;
+    backdrop-filter:blur(6px);
+}
+
+.heart {
+    position:fixed;
+    bottom:-20px;
+    font-size:20px;
+    color:#66a3ff;
+    animation:floatUp 5s linear infinite;
+}
+@keyframes floatUp { 0%{transform:translateY(0);opacity:1;} 100%{transform:translateY(-800px);opacity:0;} }
+
+.modal { display:none; position:fixed; z-index:999; left:0; top:0; width:100%; height:100%; overflow:auto; background-color:rgba(0,0,0,0.7);}
+.modal-content { background-color:#fff; margin:10% auto; padding:20px; border-radius:20px; width:90%; max-width:400px; text-align:center;}
+.modal .close { color:#aaa; float:right; font-size:28px; font-weight:bold; cursor:pointer;}
+.modal .close:hover { color:#000;}
+/* VOTE BUTTONS */
+#vote button {
+    margin:5px;
+    padding:10px 15px;
+    border:none;
+    border-radius:12px;
+    cursor:pointer;
+    background:#4da6ff;
+    color:white;
+    font-weight:bold;
+    transition:0.3s;
+}
+#vote button:hover{background:#1a75ff;transform:scale(1.1);}
+#spotifyPlayer{width:300px;height:380px;border-radius:12px;display:none;margin:auto;}
+#playSpotify{margin:15px;padding:10px 20px;background:#1DB954;color:white;border:none;border-radius:12px;cursor:pointer;font-weight:bold;}
+#playSpotify:hover{transform:scale(1.05);}
+</style>
+</head>
+<body>
+
+<header id="logo">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxCmpYgxuZN3BfIKjpZr3_3mGzYHZmNMVXDg&s" alt="Hearts2Hearts Logo">
+    <h1 style="display:inline;">Hearts2Hearts 💙</h1>
+    <p>Fanmade Website</p>
+</header>
+
+<nav>
+    <a href="#">Home</a>
+    <a href="#about">About</a>
+    <a href="#member">Member</a>
+    <a href="#vote">Vote</a>
+</nav>
+<div class="hero-decor">
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+</div>
+
+<section class="hero">
+    <div style="margin-top:25px;">
+    <p style="font-size:18px; max-width:600px; margin:auto;">
+        Where music meets heart 💙
+    </p>
+
+    <div style="margin-top:20px;">
+        <button onclick="scrollToMember()" style="
+            padding:10px 18px;
+            border:none;
+            border-radius:12px;
+            background:#4da6ff;
+            color:white;
+            font-weight:bold;
+            cursor:pointer;
+            margin:5px;
+        ">Lihat Member 💙</button>
+
+        <button onclick="scrollToVote()" style="
+            padding:10px 18px;
+            border:none;
+            border-radius:12px;
+            background:#1a75ff;
+            color:white;
+            font-weight:bold;
+            cursor:pointer;
+            margin:5px;
+        ">Favorite💖</button>
+    </div>
+
+    <p style="margin-top:15px; font-style:italic; color:#555;">
+        "From hearts to hearts, we connect as one." 💫
+    </p>
+</div>
+</section>
+
+<section id="about" class="about">
+    <h2>Tentang Hearts2Hearts 💙</h2>
+    <p>
+        Hearts2Hearts adalah girl group K-Pop beranggotakan 8 orang di bawah naungan SM Entertainment, debut 24 Februari 2025 dengan lagu "The Chase". Nama "Hearts2Hearts" bermakna menjalin hubungan tulus dengan penggemar global melalui musik penuh emosi. Grup ini dikenal memiliki anggota internasional, termasuk Carmen dari Indonesia.
+    </p>
+</section>
+<script>
+function scrollToMember(){
+    document.getElementById("memberSection").scrollIntoView({behavior:"smooth"});
+}
+function scrollToVote(){
+    document.getElementById("vote").scrollIntoView({behavior:"smooth"});
+}
+</script>
+
+<section id="memberSection" style="text-align:center; padding:20px;">
+  <h2>Member 💙</h2>
+  <div id="member" class="container">
+    <div class="card"><img src="https://awsimages.detik.net.id/community/media/visual/2026/02/18/carmen-hearts2hearts-1771390796003.jpeg?w=600&q=90"><h3>Carmen</h3></div>
+    <div class="card"><img src="https://static.wikia.nocookie.net/hearts2hearts/images/4/4f/Hearts2Hearts_Jiwoo_Rude%21_concept_photo_7.png/revision/latest/scale-to-width/360?cb=20260217222132"><h3>Jiwoo</h3></div>
+    <div class="card"><img src="https://static.wikia.nocookie.net/hearts2hearts/images/0/0d/Hearts2Hearts_Yuha_Rude%21_concept_photo_8.png/revision/latest/scale-to-width/360?cb=20260217221143"><h3>Yuha</h3></div>
+    <div class="card"><img src="https://static.wikia.nocookie.net/hearts2hearts/images/0/0f/Hearts2Hearts_Stella_Rude%21_concept_photo_8.png/revision/latest/scale-to-width/360?cb=20260217220254"><h3>Stella</h3></div>
+    <div class="card"><img src="https://static.wikia.nocookie.net/hearts2hearts/images/a/a9/Hearts2Hearts_Juun_Rude%21_concept_photo_8.png/revision/latest/scale-to-width/360?cb=20260217221731"><h3>Juun</h3></div>
+    <div class="card"><img src="https://static.wikia.nocookie.net/hearts2hearts/images/7/74/Hearts2Hearts_A-na_Rude%21_concept_photo_8.png/revision/latest/scale-to-width/360?cb=20260217221612"><h3>A-na</h3></div>
+    <div class="card"><img src="https://cdn.displate.com/artwork/270x380/2026-02-26/0d800c35-b945-4649-8153-8354d387df9a.jpg"><h3>Ian</h3></div>
+    <div class="card"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRINhvvSXEJrB5VfeIuSnC2EU-rNmH95yyl1Q&s"><h3>Ye-on</h3></div>
+  </div>
+</section>
+
+<div style="text-align:center;margin:20px;">
+    <button id="playSpotify">Play Hearts2Hearts Playlist 💚</button>
+    <iframe id="spotifyPlayer" src="https://open.spotify.com/embed/artist/1ZLU77nRzQIaP23mVSYpCQ?utm_source=generator" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+</div>
+
+<section id="vote" style="text-align:center; padding:30px;">
+  <h2>Mana nih favorite kalian?? 💖</h2>
+  <div id="voteButtons" style="display:flex; justify-content:center; flex-wrap:wrap; gap:15px;">
+    <button onclick="vote('Carmen')">Carmen</button>
+    <button onclick="vote('Jiwoo')">Jiwoo</button>
+    <button onclick="vote('Yuha')">Yuha</button>
+    <button onclick="vote('Stella')">Stella</button>
+    <button onclick="vote('Juun')">Juun</button>
+    <button onclick="vote('A-na')">A-na</button>
+    <button onclick="vote('Ian')">Ian</button>
+    <button onclick="vote('Ye-on')">Ye-on</button>
+  </div>
+  <p id="voteResult" style="margin-top:15px;font-weight:bold;"></p>
+</section>
+
+<footer>
+    <p>© 2026 Hearts2Hearts Fansite 💙</p>
+</footer>
+
+<script>
+function createHeart(){
+    const heart = document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerHTML="💙";
+    heart.style.left=Math.random()*100+"vw";
+    heart.style.fontSize=Math.random()*20+10+"px";
+    document.body.appendChild(heart);
+    setTimeout(()=>heart.remove(),5000);
+}
+setInterval(createHeart,400);
+</script>
+
+<div id="memberModal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <img id="modalImg" src="" alt="Member" style="width:200px;border-radius:15px;">
+    <h3 id="modalName"></h3>
+    <p id="modalBio"></p>
+    <p id="modalFunFact"></p>
+  </div>
+</div>
+
+<script>
+const members = {
+    "Carmen": { img:"https://upload.wikimedia.org/wikipedia/commons/2/2a/Carmen_di_Musinsa_Beauty_Festa_Pop-Up_Store_2025.jpg", bio:"Vocalist 🌴", fun:"Birth Date: March-28-2006" },
+    "Jiwoo": { img:"https://upload.wikimedia.org/wikipedia/commons/2/2c/Jiwoo_di_Musinsa_Beauty_Festa_Pop-Up_Store_2025.jpg", bio:"Leader,Dancer,Visual 🍓", fun:"Birth Date: Sept-07-2006" },
+    "Yuha": { img:"https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/Yuha_di_Musinsa_Beauty_Festa_Pop-Up_Store_2025.jpg/250px-Yuha_di_Musinsa_Beauty_Festa_Pop-Up_Store_2025.jpg", bio:"Vocalist 🎀", fun:"Birth Date: April-12-2007" },
+    "Stella": { img:"https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Stella_di_Musinsa_Beauty_Festa_Pop-Up_Store_2025.jpg/960px-Stella_di_Musinsa_Beauty_Festa_Pop-Up_Store_2025.jpg", bio:"Vocalist 🧁", fun:"Birth Date: June-18-2007" },
+    "Juun": { img:"https://upload.wikimedia.org/wikipedia/commons/2/27/Juun_di_Musinsa_Beauty_Festa_Pop-Up_Store_2025.jpg", bio:"Main Dancer 👽", fun:"Birth Date: Dec-03-2008" },
+    "A-na": { img:"https://upload.wikimedia.org/wikipedia/commons/e/e7/A-na_di_Musinsa_Beauty_Festa_Pop-Up_Store_2025.jpg", bio:"Lead Vocalist 🌻", fun:"Birth Date: Dec-20-2008" },
+    "Ian": { img:"https://upload.wikimedia.org/wikipedia/commons/e/e7/Ian_di_Musinsa_Beauty_Festa_Pop-Up_Store_2025.jpg", bio:"Visual Center 🫛", fun:"Birth Date: Oct-09-2009" },
+    "Ye-on": { img:"https://upload.wikimedia.org/wikipedia/commons/c/c0/Ye-on_di_Musinsa_Beauty_Festa_Pop-Up_Store_2025.jpg", bio:"Vocalist,Maknae 😊", fun:"Birth Date: April-19-2010" }
+};
+
+const modal = document.getElementById("memberModal");
+const modalImg = document.getElementById("modalImg");
+const modalName = document.getElementById("modalName");
+const modalBio = document.getElementById("modalBio");
+const modalFun = document.getElementById("modalFunFact");
+const closeBtn = document.getElementsByClassName("close")[0];
+
+document.querySelectorAll(".card").forEach(card=>{
+    card.addEventListener("click",()=>{
+        const name=card.querySelector("h3").innerText;
+        if(members[name]){
+            modal.style.display="block";
+            modalImg.src=members[name].img;
+            modalName.innerText=name;
+            modalBio.innerText=members[name].bio;
+            modalFun.innerText=members[name].fun;
+        }
+    });
+});
+
+closeBtn.onclick=()=>{modal.style.display="none";}
+window.onclick=(e)=>{if(e.target==modal) modal.style.display="none";}
+
+
+const votes={Carmen:0,Jiwoo:0,Yuha:0,Stella:0,Juun:0,"A-na":0,Ian:0,"Ye-on":0};
+function vote(member){
+    votes[member]++;
+    let maxVotes=Math.max(...Object.values(votes));
+    let leaders=Object.keys(votes).filter(n=>votes[n]===maxVotes);
+    document.getElementById("voteResult").innerText=`Saat ini: ${leaders.join(", ")} memimpin dengan ${maxVotes} vote 💙`;
+    for(let i=0;i<5;i++) createHeart();
+}
+
+const playBtn=document.getElementById("playSpotify");
+const spotify=document.getElementById("spotifyPlayer");
+playBtn.addEventListener("click",()=>{
+    spotify.style.display="block";
+    spotify.src = spotify.src + "?autoplay=1";
+    playBtn.style.display="none";
+    const fallback=new Audio('https://www.bensound.com/bensound-music/bensound-love.mp3');
+    fallback.loop=true;
+    fallback.play().catch(()=>console.log("Autoplay diblokir, klik tombol Play Music lagi."));
+    // Confetti fun
+    for(let i=0;i<30;i++){setTimeout(createHeart,i*50);}
+});
+</script>
+</body>
+</html>
